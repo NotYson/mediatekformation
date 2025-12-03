@@ -2,7 +2,16 @@
 {% block body %}
     <div class="row mt-3">
         <div class="col">
-            <h4 class="text-info mt-5">{{ playlist.name }}</h4>
+            <h4 class="text-info mt-5">
+                {{ playlist.name }}
+            </h4>
+
+            {# 👉 nombre de formations dans la playlist #}
+            <p>
+                <strong>Nombre de formations :</strong>
+                {{ playlistformations|length }}
+            </p>
+
             <strong>catégories : </strong>
                 <!-- boucle pour afficher les catégories -->
                 {% set anccategorie = '' %}
@@ -10,9 +19,11 @@
                     {{ playlist.name }}&nbsp;
                 {% endfor %}
             <br /><br />
+
             <strong>description :</strong><br />
                 {{ playlist.description|nl2br }}
         </div>
+
         <div class="col">
             <!-- boucle sur l'affichage des formations -->
             {% for formation in playlistformations %}
@@ -33,6 +44,5 @@
                 </div>
             {% endfor %}
         </div>
-        
     </div>
 {% endblock %}

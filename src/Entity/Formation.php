@@ -7,22 +7,23 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
 class Formation
 {
-
     /**
      * Début de chemin vers les images
      */
     private const cheminImage = "https://i.ytimg.com/vi/";
-        
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[Assert\LessThanOrEqual('today', message: "La date de publication ne peut pas être postérieure à aujourd'hui.")]
     private ?\DateTimeInterface $publishedAt = null;
 
     #[ORM\Column(length: 100, nullable: true)]
@@ -65,13 +66,14 @@ class Formation
         return $this;
     }
 
-    public function getPublishedAtString(): string {
-        if($this->publishedAt == null){
+    public function getPublishedAtString(): string
+    {
+        if ($this->publishedAt == null) {
             return "";
         }
-        return $this->publishedAt->format('d/m/Y');     
-    }      
-    
+        return $this->publishedAt->format('d/m/Y');
+    }
+
     public function getTitle(): ?string
     {
         return $this->title;
@@ -110,15 +112,15 @@ class Formation
 
     public function getMiniature(): ?string
     {
-        return self::cheminImage.$this->videoId."/default.jpg";
+        return self::cheminImage . $this->videoId . "/default.jpg";
     }
 
     public function getPicture(): ?string
     {
-        return self::cheminImage.$this->videoId."/hqdefault.jpg";
+        return self::cheminImage . $this->videoId . "/hqdefault.jpg";
     }
-    
-    public function getPlaylist(): ?playlist
+
+    public function getPlaylist(): ?Playlist
     {
         return $this->playlist;
     }
