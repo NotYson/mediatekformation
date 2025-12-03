@@ -5,15 +5,12 @@
             <h4 class="text-info mt-5">
                 {{ playlist.name }}
             </h4>
-
-            {# 👉 nombre de formations dans la playlist #}
             <p>
                 <strong>Nombre de formations :</strong>
                 {{ playlistformations|length }}
             </p>
 
             <strong>catégories : </strong>
-                <!-- boucle pour afficher les catégories -->
                 {% set anccategorie = '' %}
                 {% for playlist in playlistcategories %}
                     {{ playlist.name }}&nbsp;
@@ -25,7 +22,6 @@
         </div>
 
         <div class="col">
-            <!-- boucle sur l'affichage des formations -->
             {% for formation in playlistformations %}
                 <div class="row mt-1">
                     <div class="col-md-auto">

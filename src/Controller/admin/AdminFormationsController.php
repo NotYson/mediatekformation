@@ -32,7 +32,6 @@ class AdminFormationsController extends AbstractController
         $this->om                   = $om;
     }
 
-    // LISTE AVEC TRI PAR DÉFAUT (DATE DESC)
     #[Route('/admin', name: 'admin.formations')]
     public function index(): Response
     {
@@ -47,11 +46,9 @@ class AdminFormationsController extends AbstractController
         ]);
     }
 
-    // TRI (par titre ou date par exemple)
     #[Route('/admin/tri/{champ}/{ordre}', name: 'admin.formations.sort')]
     public function sort(string $champ, string $ordre): Response
     {
-        // champ = 'title' ou 'publishedAt' (et d'autres si tu veux)
         $formations = $this->formationRepository->findAllOrderBy($champ, $ordre);
 
         $playlists  = $this->playlistRepository->findAll();
@@ -66,7 +63,6 @@ class AdminFormationsController extends AbstractController
         ]);
     }
 
-    // FILTRES (par titre, playlist, catégorie)
     #[Route(
         '/admin/recherche/{champ}/{table}',
         name: 'admin.formations.findallcontain',
@@ -89,7 +85,6 @@ class AdminFormationsController extends AbstractController
         ]);
     }
 
-    // AJOUT
     #[Route('/admin/ajout', name: 'admin.formations.ajout')]
     public function ajout(Request $request): Response
     {
@@ -110,7 +105,6 @@ class AdminFormationsController extends AbstractController
         ]);
     }
 
-    // EDIT
     #[Route('/admin/edit/{id}', name: 'admin.formations.edit')]
     public function edit(Formation $formation, Request $request): Response
     {
@@ -129,7 +123,6 @@ class AdminFormationsController extends AbstractController
         ]);
     }
 
-    // SUPPR (suppression simple → la formation disparaît de la playlist)
     #[Route('/admin/suppr/{id}', name: 'admin.formations.suppr')]
     public function suppr(Formation $formation): Response
     {

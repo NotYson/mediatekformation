@@ -33,8 +33,6 @@
                         </select>                    
                     </form>            
                 </th>
-
-                {# ➕ nouvelle colonne : nombre de formations #}
                 <th class="text-center align-top" scope="col">
                     nb formations<br />
                     <a href="{{ path('playlists.sort', {champ:'nbformations', ordre:'ASC'}) }}" class="btn btn-info btn-sm active" role="button" aria-pressed="true"><</a>
@@ -47,7 +45,6 @@
             </tr>
         </thead>
         <tbody>
-            <!-- boucle sur les playlists -->
             {% if playlists|length > 0 %}
                 {% for k in 0..playlists|length-1 %}
                     <tr class="align-middle">
@@ -65,8 +62,6 @@
                                 {% endfor %}
                             {% endif %}
                         </td>
-
-                        {# ➕ cellule : affichage du nombre de formations #}
                         <td class="text-center">
                             {{ playlists[k].formations|length }}
                         </td>

@@ -11,7 +11,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                {# COLONNE TITRE + TRI + FILTRE TEXTE #}
                 <th class="text-left align-top">
                     Titre<br />
                     <a href="{{ path('admin.formations.sort', {champ: 'title', ordre: 'ASC'}) }}"
@@ -31,8 +30,6 @@
                         </div>
                     </form>
                 </th>
-
-                {# COLONNE PLAYLIST + FILTRE PAR PLAYLIST #}
                 <th class="text-left align-top">
                     Playlist
                     <form class="form-inline mt-1"
@@ -54,8 +51,6 @@
                         </select>
                     </form>
                 </th>
-
-                {# COLONNE CATÉGORIE (OPTIONNELLE) #}
                 <th class="text-left align-top">
                     Catégories
                     <form class="form-inline mt-1"
@@ -77,8 +72,6 @@
                         </select>
                     </form>
                 </th>
-
-                {# COLONNE DATE + TRI #}
                 <th class="text-left align-top">
                     Date de publication<br />
                     <a href="{{ path('admin.formations.sort', {champ: 'publishedAt', ordre: 'ASC'}) }}"

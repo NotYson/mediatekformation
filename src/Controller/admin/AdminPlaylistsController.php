@@ -28,7 +28,6 @@ class AdminPlaylistsController extends AbstractController
         $this->om                  = $om;
     }
 
-    // LISTE AVEC TRI PAR DÉFAUT
     #[Route('/admin/playlists', name: 'admin.playlists')]
     public function index(): Response
     {
@@ -41,7 +40,6 @@ class AdminPlaylistsController extends AbstractController
         ]);
     }
 
-    // TRI (name, nbformations, etc.)
     #[Route('/admin/playlists/tri/{champ}/{ordre}', name: 'admin.playlists.sort')]
     public function sort(string $champ, string $ordre): Response
     {
@@ -50,7 +48,6 @@ class AdminPlaylistsController extends AbstractController
                 $playlists = $this->playlistRepository->findAllOrderByName($ordre);
                 break;
             case 'nbformations':
-                // méthode à ajouter dans PlaylistRepository (voir plus bas)
                 $playlists = $this->playlistRepository->findAllOrderByNbFormations($ordre);
                 break;
             default:
@@ -68,7 +65,6 @@ class AdminPlaylistsController extends AbstractController
         ]);
     }
 
-    // FILTRES (par nom, par catégorie)
     #[Route(
         '/admin/playlists/recherche/{champ}/{table}',
         name: 'admin.playlists.findallcontain',
@@ -89,7 +85,6 @@ class AdminPlaylistsController extends AbstractController
         ]);
     }
 
-    // AJOUT
     #[Route('/admin/playlists/ajout', name: 'admin.playlists.ajout')]
     public function ajout(Request $request): Response
     {
@@ -111,7 +106,6 @@ class AdminPlaylistsController extends AbstractController
         ]);
     }
 
-    // EDIT
     #[Route('/admin/playlists/edit/{id}', name: 'admin.playlists.edit')]
     public function edit(Playlist $playlist, Request $request): Response
     {
@@ -131,7 +125,6 @@ class AdminPlaylistsController extends AbstractController
         ]);
     }
 
-    // SUPPR (avec blocage si formations)
     #[Route('/admin/playlists/suppr/{id}', name: 'admin.playlists.suppr')]
     public function suppr(Playlist $playlist): Response
     {

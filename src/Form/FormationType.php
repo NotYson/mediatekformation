@@ -44,7 +44,6 @@ class FormationType extends AbstractType
                 'required' => false,
             ])
 
-            // 👉 Playlist unique
             ->add('playlist', EntityType::class, [
                 'class' => Playlist::class,
                 'choice_label' => 'name',
@@ -52,7 +51,6 @@ class FormationType extends AbstractType
                 'placeholder' => 'Sélectionner une playlist',
             ])
 
-            // 👉 Plusieurs catégories possibles
             ->add('categories', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'name',

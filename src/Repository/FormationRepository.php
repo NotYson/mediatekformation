@@ -29,7 +29,6 @@ class FormationRepository extends ServiceEntityRepository
     }
 
     /**
-     * Retourne toutes les formations triées sur un champ
      * @param string $champ
      * @param string $ordre
      * @param string $table si $champ dans une autre table
@@ -52,8 +51,6 @@ class FormationRepository extends ServiceEntityRepository
     }
 
     /**
-     * Enregistrements dont un champ contient une valeur
-     * ou tous les enregistrements si la valeur est vide
      * @param string $champ
      * @param string $valeur
      * @param string $table si $champ dans une autre table
@@ -61,7 +58,6 @@ class FormationRepository extends ServiceEntityRepository
      */
     public function findByContainValue(string $champ, string $valeur, string $table = ""): array
     {
-        // 👉 si aucune valeur saisie, on renvoie tout, trié comme dans le back-office (par date desc)
         if ($valeur == "") {
             return $this->findAllOrderBy('publishedAt', 'DESC');
         }
@@ -85,7 +81,6 @@ class FormationRepository extends ServiceEntityRepository
     }
 
     /**
-     * Retourne les n formations les plus récentes
      * @param int $nb
      * @return Formation[]
      */
@@ -99,7 +94,6 @@ class FormationRepository extends ServiceEntityRepository
     }
 
     /**
-     * Retourne la liste des formations d'une playlist
      * @param int $idPlaylist
      * @return Formation[]
      */
